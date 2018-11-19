@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>testthymeleaf</title>
+</head>
+<body>
+    <h1>success!!</h1>
+    <!--thymeleaf的取值以及 #内置对象-->
+    <div id="div01" th:id="${hello}" th:text="${#session.getAttribute('hello2')}"></div><br>
+    <!--<span th:text="${session.hello2}"></span><br>-->
+    <span th:utext="*{session.hello2}"></span><br>
+
+
+    <!--这是一个 thymeleaf的超链接-->
+<a href="http://localhost:8080" th:href="@{/welcome.html(flag=${#session.getAttribute('hello2')},flag1=${session.hello2})}">这是一个超链接</a>
+<br><!---->
+    <!--取数组-->
+<div th:text="${users[0]}"></div><br>
+
+    <!--遍历 集合 th:each放在哪儿 哪儿就遍历  如下就是遍历了n个ul-->
+    <ul th:each="username : ${users}">
+    <li th:text="${username}"></li>
+    </ul>
+
+    <hr>
+
+    <!-- 等于遍历了n个 li  行内写法   [( = utext    [[ = text-->
+    <ul>
+        <li th:each="user : ${users}"><h2>[(${user})]</h2></li>
+    </ul>
+
+
+
+</body>
+</html>
